@@ -49,7 +49,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Devprogra.urls'
@@ -58,7 +57,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['templates'],
-        'APP_DIRS': False,
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -75,13 +74,6 @@ WSGI_APPLICATION = 'Devprogra.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 """
 DATABASES = {
     'default': {
@@ -90,7 +82,18 @@ DATABASES = {
     }
 }
 """
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'miercoles',
+        'USER': 'eversito',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',
+        'PORT': 5432,
+   }
 
+}
+"""
 import dj_database_url
 from decouple import config
 
@@ -99,6 +102,7 @@ DATABASES = {
         default=config('DATABASE_URL')
     )
 }
+"""
 
 
 # Password validation
